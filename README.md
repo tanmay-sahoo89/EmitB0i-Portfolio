@@ -1,33 +1,45 @@
 # Tanmay Chiranjib Sahoo | AI/ML Engineer & Video Editor
 
-A modern, interactive portfolio website showcasing AI/ML projects, technical expertise, and creative work. Built with React, TypeScript, and Vite, featuring smooth animations and real-time interactivity.
+A professional portfolio website showcasing AI/ML projects, technical expertise, and creative work. Built with modern web technologies and optimized for performance.
 
-🌐 **Live Demo**: [tanmay-portfolio-hazel.vercel.app](https://tanmay-portfolio-hazel.vercel.app)
+🔗 **Live Demo:** [https://tanmay-portfolio-hazel.vercel.app/](https://tanmay-portfolio-hazel.vercel.app/)
 
-## 🎨 Features
+## 🎯 About
 
-- **Interactive Hero Section** - Eye-catching landing with animated particles
-- **About & Background** - Personal story and professional journey timeline
-- **Technical Arsenal** - Showcase of skills and tech stack
-- **Projects Portfolio** - Detailed project cards with descriptions
-- **Case Study** - In-depth analysis of featured work
-- **Achievements** - Awards and milestones
-- **Smooth Animations** - Framer Motion powered transitions
-- **Custom Cursor** - Inverted cursor interaction effects
-- **Loading Screen** - Dynamic welcome animation
-- **3D Integration** - Spline 3D components for visual impact
-- **Fully Responsive** - Optimized for all devices
+This portfolio showcases:
+- **AI/ML Projects** - Intelligent systems and machine learning implementations
+- **Technical Skills** - Modern web development with React, TypeScript, and Python
+- **Creative Work** - Video editing and visual content creation
+- **Case Studies** - Detailed project breakdowns and implementations
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: React 19 with TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS + PostCSS
-- **Animations**: Framer Motion
-- **3D Graphics**: Spline React
-- **Code Quality**: ESLint with TypeScript support
+- **Frontend Framework:** React 19 with TypeScript
+- **Build Tool:** Vite (Fast Modern Build Tool)
+- **Styling:** Tailwind CSS + PostCSS
+- **Animations:** Framer Motion
+- **3D Integration:** Spline (Interactive 3D Models)
+- **Linting:** ESLint with React hooks support
+- **Deployment:** Vercel
 
-## 📦 Installation
+## 📦 Dependencies
+
+```json
+{
+  "react": "^19.2.4",
+  "react-dom": "^19.2.4",
+  "framer-motion": "^12.15.0",
+  "@splinetool/react-spline": "^4.0.0"
+}
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
 
 1. Clone the repository:
 ```bash
@@ -45,98 +57,91 @@ npm install
 npm run dev
 ```
 
-4. Build for production:
-```bash
-npm run build
-```
+The site will be available at `http://localhost:5173`
 
-## 📁 Project Structure
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server with HMR
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint checks
+- `npm run preview` - Preview production build locally
+
+## 🏗️ Project Structure
 
 ```
 src/
-├── components/          # React components
-│   ├── Header.tsx       # Navigation bar
-│   ├── Hero.tsx         # Landing section
-│   ├── About.tsx        # About section
-│   ├── Projects.tsx     # Projects showcase
-│   ├── TechnicalArsenal.tsx  # Skills & tech stack
-│   ├── Timeline.tsx     # Career timeline
-│   ├── Achievements.tsx # Awards & milestones
-│   ├── CaseStudy.tsx    # Featured case study
-│   ├── CTA.tsx          # Call to action
-│   ├── Footer.tsx       # Footer section
-│   └── [Interactive Components]  # Animations & effects
-├── App.tsx              # Main app component
-├── main.tsx             # Entry point
-└── [CSS files]          # Global & component styles
+├── components/
+│   ├── Header.tsx          - Navigation header
+│   ├── Hero.tsx            - Hero section with intro
+│   ├── About.tsx           - About me section
+│   ├── TechnicalArsenal.tsx - Skills and tech stack
+│   ├── Projects.tsx        - Portfolio projects showcase
+│   ├── CaseStudy.tsx       - Detailed project case studies
+│   ├── Achievements.tsx    - Accomplishments and awards
+│   ├── Timeline.tsx        - Experience timeline
+│   ├── CTA.tsx             - Call-to-action section
+│   ├── Footer.tsx          - Footer with links
+│   ├── InteractiveSpline.tsx - 3D Spline models
+│   ├── InteractiveParticles.tsx - Animated particle effects
+│   ├── InvertedCursor.tsx  - Custom cursor animation
+│   ├── BackgroundLights.tsx - Animated background
+│   └── LoadingScreen.tsx   - Initial loading animation
+├── App.tsx                 - Main application
+├── main.tsx                - Entry point
+├── App.css                 - Global styles
+└── index.css               - Base styles
 ```
 
-## 🚀 Available Scripts
+## 🎨 Features
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run lint` | Run ESLint checks |
-| `npm run preview` | Preview production build |
+✨ **Modern UI/UX**
+- Smooth animations with Framer Motion
+- Interactive 3D models with Spline
+- Custom cursor and particle effects
+- Loading screen with animations
 
-## 🎯 Key Components
+⚡ **Performance**
+- Optimized with Vite
+- TypeScript for type safety
+- ESLint for code quality
+- Responsive design
 
-### Header
-Navigation component with smooth scrolling and mobile-responsive menu
-
-### Hero
-Landing section with animated background particles and interactive 3D elements
-
-### About
-Personal introduction with timeline of professional journey
-
-### Projects
-Interactive project cards showcasing portfolio work with descriptions and links
-
-### Technical Arsenal
-Display of technical skills, programming languages, and tools
-
-### Achievements
-Timeline and cards highlighting awards, certifications, and milestones
-
-### Case Study
-Detailed deep-dive into a featured project with results and methodology
+🌐 **SEO Optimized**
+- Meta tags for social sharing
+- Open Graph integration
+- Twitter Card support
 
 ## 📱 Responsive Design
 
-- Mobile-first approach
-- Optimized for all screen sizes
-- Touch-friendly interactive elements
-- Fast load times with optimized assets
+Fully responsive across all devices:
+- Desktop (1200px+)
+- Tablet (768px - 1199px)
+- Mobile (< 768px)
 
 ## 🔧 Configuration Files
 
-- `vite.config.ts` - Vite build configuration
+- `vite.config.ts` - Vite configuration
+- `tsconfig.json` - TypeScript settings
 - `tailwind.config.js` - Tailwind CSS customization
-- `tsconfig.json` - TypeScript configuration
+- `postcss.config.js` - PostCSS configuration
 - `eslint.config.js` - ESLint rules
-
-## 📝 Social Sharing
-
-The portfolio includes Open Graph meta tags for proper social media preview:
-- Title: "Tanmay Chiranjib Sahoo | AI/ML Engineer & Video Editor"
-- Description: Professional bio
-- Preview image: Custom social card (1200x630px)
-
-## 🤝 Contributing
-
-Contributions, suggestions, and improvements are welcome! Feel free to open issues or submit pull requests.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - See [LICENSE](LICENSE) file for details
 
-## 💬 Contact
+## 🤝 Connect
 
-- **Portfolio**: [tanmay-portfolio-hazel.vercel.app](https://tanmay-portfolio-hazel.vercel.app)
-- **GitHub**: [@tanmay-sahoo89](https://github.com/tanmay-sahoo89)
-- **Email**: Available on the portfolio website
+- **Website:** [tanmay-portfolio-hazel.vercel.app](https://tanmay-portfolio-hazel.vercel.app/)
+- **GitHub:** [github.com/tanmay-sahoo89](https://github.com/tanmay-sahoo89)
+- **Email:** Contact through portfolio website
+
+## 📞 Support
+
+For issues or suggestions, feel free to:
+- Open an issue on GitHub
+- Submit a pull request
+- Contact through the portfolio website
 
 ---
 
