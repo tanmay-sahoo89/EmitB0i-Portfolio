@@ -99,6 +99,7 @@ export default function Projects() {
                   href="/case-study"
                   onClick={(e) => {
                     e.preventDefault();
+                    window.scrollTo(0, 0);
                     window.history.pushState({}, "", "/case-study");
                     window.dispatchEvent(new PopStateEvent("popstate"));
                   }}
@@ -216,6 +217,7 @@ export default function Projects() {
                   href="/case-study"
                   onClick={(e) => {
                     e.preventDefault();
+                    window.scrollTo(0, 0);
                     window.history.pushState({}, "", "/case-study");
                     window.dispatchEvent(new PopStateEvent("popstate"));
                   }}
