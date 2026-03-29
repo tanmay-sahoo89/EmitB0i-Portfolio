@@ -2,13 +2,6 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    title: "Team Lead & Student",
-    company: "Lucknow Team Deca-Algos, KIIT",
-    date: "MAY 2025",
-    description:
-      "Smart AI-powered multiplatform application. Delivered for IIT-BHU. Technology: React Native.",
-  },
-  {
     title: "Artificial Intelligence Intern",
     company: "Plasmid Innovation Ltd.",
     date: "SEP 2025 – NOV 2025",
