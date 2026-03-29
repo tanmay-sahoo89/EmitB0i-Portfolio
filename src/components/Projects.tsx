@@ -97,6 +97,11 @@ export default function Projects() {
                 </motion.a>
                 <motion.a
                   href="/case-study"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.history.pushState({}, "", "/case-study");
+                    window.dispatchEvent(new PopStateEvent("popstate"));
+                  }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-6 py-2.5 border border-outline-variant text-on-surface font-semibold rounded-lg text-sm"
@@ -209,6 +214,11 @@ export default function Projects() {
                 </motion.a>
                 <motion.a
                   href="/case-study"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.history.pushState({}, "", "/case-study");
+                    window.dispatchEvent(new PopStateEvent("popstate"));
+                  }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-6 py-2.5 border border-outline-variant text-on-surface font-semibold rounded-lg text-sm"

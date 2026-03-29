@@ -7,6 +7,7 @@ A professional portfolio website showcasing AI/ML projects, technical expertise,
 ## 🎯 About
 
 This portfolio showcases:
+
 - **AI/ML Projects** - Intelligent systems and machine learning implementations
 - **Technical Skills** - Modern web development with React, TypeScript, and Python
 - **Creative Work** - Video editing and visual content creation
@@ -36,23 +37,27 @@ This portfolio showcases:
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/tanmay-sahoo89/EmitB0i-Portfolio.git
 cd tanmay-portfolio
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start development server:
+
 ```bash
 npm run dev
 ```
@@ -95,18 +100,21 @@ src/
 ## 🎨 Features
 
 ✨ **Modern UI/UX**
+
 - Smooth animations with Framer Motion
 - Interactive 3D models with Spline
 - Custom cursor and particle effects
 - Loading screen with animations
 
 ⚡ **Performance**
+
 - Optimized with Vite
 - TypeScript for type safety
 - ESLint for code quality
 - Responsive design
 
 🌐 **SEO Optimized**
+
 - Meta tags for social sharing
 - Open Graph integration
 - Twitter Card support
@@ -114,6 +122,7 @@ src/
 ## 📱 Responsive Design
 
 Fully responsive across all devices:
+
 - Desktop (1200px+)
 - Tablet (768px - 1199px)
 - Mobile (< 768px)
@@ -139,6 +148,7 @@ MIT License - See [LICENSE](LICENSE) file for details
 ## 📞 Support
 
 For issues or suggestions, feel free to:
+
 - Open an issue on GitHub
 - Submit a pull request
 - Contact through the portfolio website
