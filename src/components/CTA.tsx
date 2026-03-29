@@ -84,19 +84,8 @@ export default function CTA() {
         </motion.div>
       </div>
 
-      {/* Background decorations */}
-      <motion.div
-        animate={{
-          opacity: [0.05, 0.15, 0.05],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] pointer-events-none"
-      />
+      {/* Background decoration — pure CSS */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] pointer-events-none bg-light bg-light-1" />
     </section>
   );
 }

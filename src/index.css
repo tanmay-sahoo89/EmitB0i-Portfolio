@@ -107,6 +107,49 @@ a,
   }
 }
 
+/* ===== Background Lights — pure CSS, GPU-composited ===== */
+
+.bg-light {
+  will-change: transform, opacity;
+}
+
+.bg-light-1 {
+  animation: bgLight1 8s ease-in-out infinite;
+}
+.bg-light-2 {
+  animation: bgLight2 10s ease-in-out 1s infinite;
+}
+.bg-light-3 {
+  animation: bgLight3 7s ease-in-out 2s infinite;
+}
+.bg-light-4 {
+  animation: bgLight4 9s ease-in-out 3s infinite;
+}
+.bg-light-5 {
+  animation: bgLight5 11s ease-in-out 4s infinite;
+}
+
+@keyframes bgLight1 {
+  0%, 100% { opacity: 0.15; transform: translate3d(0, 0, 0) scale(1); }
+  50% { opacity: 0.25; transform: translate3d(30px, -20px, 0) scale(1.2); }
+}
+@keyframes bgLight2 {
+  0%, 100% { opacity: 0.1; transform: translate3d(0, 0, 0) scale(1); }
+  50% { opacity: 0.2; transform: translate3d(-40px, 30px, 0) scale(1.3); }
+}
+@keyframes bgLight3 {
+  0%, 100% { opacity: 0.08; transform: scale(1); }
+  50% { opacity: 0.15; transform: scale(1.1); }
+}
+@keyframes bgLight4 {
+  0%, 100% { opacity: 0.1; transform: translate3d(0, 0, 0) scale(1); }
+  50% { opacity: 0.18; transform: translate3d(0, 40px, 0) scale(1.2); }
+}
+@keyframes bgLight5 {
+  0%, 100% { opacity: 0.05; transform: scale(1); }
+  50% { opacity: 0.12; transform: scale(1.15); }
+}
+
 /* Utility classes */
 @layer utilities {
   .text-gradient {

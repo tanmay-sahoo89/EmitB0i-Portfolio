@@ -9,14 +9,13 @@ export default function LoadingScreen({
   onComplete: () => void;
   onExpanding?: () => void;
 }) {
-  const [percentage, setPercentage] = useState(0);
   const [phase, setPhase] = useState<
     "loading" | "welcome" | "expanding" | "fadeout" | "done"
   >("loading");
   const rafRef = useRef(0);
   const pctRef = useRef<HTMLSpanElement>(null);
 
-  // Counter via RAF — writes directly to DOM, no React re-renders
+  // Counter via RAF — direct DOM writes only, zero React re-renders
   useEffect(() => {
     let current = 0;
     let lastTime = 0;
@@ -33,14 +32,9 @@ export default function LoadingScreen({
         current = Math.min(100, current + inc + Math.random() * 1.2);
         const val = Math.floor(current);
 
-        // Direct DOM write — avoids React reconciliation
+        // Direct DOM writes only — no setState
         if (pctRef.current) pctRef.current.textContent = `${val}`;
-        // Update progress bar via CSS variable
-        document.documentElement.style.setProperty(
-          "--loading-pct",
-          `${val}%`
-        );
-        setPercentage(val);
+        document.documentElement.style.setProperty("--loading-pct", `${val}%`);
 
         if (current >= 100) {
           setTimeout(() => setPhase("welcome"), 400);
@@ -146,7 +140,7 @@ export default function LoadingScreen({
             <div className="loading-percentage loading-center-enter">
               <span className="loading-pct-label">LOADING</span>
               <span className="loading-pct-number">
-                <span ref={pctRef}>{percentage}</span>
+                <span ref={pctRef}>0</span>
                 <span className="loading-pct-symbol">%</span>
               </span>
             </div>

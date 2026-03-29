@@ -37,26 +37,6 @@ const skills = [
 ];
 
 export default function About() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" as const },
-    },
-  };
-
   return (
     <section
       id="about"
@@ -170,18 +150,16 @@ export default function About() {
         </div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           {skills.map((skillGroup, idx) => (
-            <motion.div
+            <div
               key={idx}
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className="bg-surface-container border border-outline-variant rounded-xl p-6 hover:border-primary/50 transition-all duration-300"
+              className="bg-surface-container border border-outline-variant rounded-xl p-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
             >
               <h4
                 className={`text-lg font-bold mb-4 ${skillGroup.color === "primary" ? "text-primary" : "text-tertiary"}`}
@@ -190,24 +168,19 @@ export default function About() {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {skillGroup.items.map((skill, i) => (
-                  <motion.span
+                  <span
                     key={i}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
-                    className={`px-3 py-1.5 rounded-lg text-sm font-medium border ${
+                    className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition-transform duration-200 hover:scale-105 ${
                       skillGroup.color === "primary"
                         ? "bg-primary/10 border-primary/30 text-primary"
                         : "bg-tertiary/10 border-tertiary/30 text-tertiary"
                     }`}
                   >
                     {skill}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>

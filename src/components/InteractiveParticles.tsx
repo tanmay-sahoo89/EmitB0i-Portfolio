@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+
+/* ── Lightweight particle canvas — O(n) per frame, no React re-renders ── */
 
 interface Particle {
   x: number;
@@ -10,138 +12,123 @@ interface Particle {
   color: string;
 }
 
-interface MousePosition {
-  x: number;
-  y: number;
-}
-
 export default function InteractiveParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const particlesRef = useRef<Particle[]>([]);
-  const mouseRef = useRef<MousePosition>({ x: 0, y: 0 });
-  const animationRef = useRef<number>(undefined);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    const updateDimensions = () => {
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || dimensions.width === 0) return;
+    if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    canvas.width = dimensions.width;
-    canvas.height = dimensions.height;
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let animId: number;
+    const mouse = { x: -9999, y: -9999 };
 
-    // Initialize particles
-    const particleCount = Math.min(
-      80,
-      Math.floor((dimensions.width * dimensions.height) / 15000),
-    );
+    const resize = () => {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    resize();
+
+    // Fewer particles, capped at 40
+    const count = Math.min(40, Math.floor((w * h) / 30000));
     const colors = ["#a78bfa", "#34d399", "#818cf8", "#c4b5fd"];
-
-    particlesRef.current = Array.from({ length: particleCount }, () => ({
-      x: Math.random() * dimensions.width,
-      y: Math.random() * dimensions.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      size: Math.random() * 2 + 1,
-      opacity: Math.random() * 0.5 + 0.2,
+    const particles: Particle[] = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      size: Math.random() * 1.8 + 0.8,
+      opacity: Math.random() * 0.4 + 0.15,
       color: colors[Math.floor(Math.random() * colors.length)],
     }));
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
+    const handleMouse = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
     };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, w, h);
 
-      const mouse = mouseRef.current;
-      const particles = particlesRef.current;
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
 
-      particles.forEach((particle, i) => {
-        // Calculate distance from mouse
-        const dx = mouse.x - particle.x;
-        const dy = mouse.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        // Mouse interaction - particles gently move away from cursor
-        if (distance < 150) {
-          const force = (150 - distance) / 150;
-          particle.vx -= (dx / distance) * force * 0.02;
-          particle.vy -= (dy / distance) * force * 0.02;
+        // Mouse repulsion
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const dist = dx * dx + dy * dy; // skip sqrt
+        if (dist < 22500) {
+          // 150^2
+          const d = Math.sqrt(dist);
+          const force = (150 - d) / 150;
+          p.vx -= (dx / d) * force * 0.015;
+          p.vy -= (dy / d) * force * 0.015;
         }
 
-        // Update position
-        particle.x += particle.vx;
-        particle.y += particle.vy;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vx *= 0.99;
+        p.vy *= 0.99;
+        p.vx += (Math.random() - 0.5) * 0.01;
+        p.vy += (Math.random() - 0.5) * 0.01;
 
-        // Apply friction
-        particle.vx *= 0.99;
-        particle.vy *= 0.99;
+        // Wrap
+        if (p.x < 0) p.x = w;
+        else if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        else if (p.y > h) p.y = 0;
 
-        // Add some random movement
-        particle.vx += (Math.random() - 0.5) * 0.02;
-        particle.vy += (Math.random() - 0.5) * 0.02;
-
-        // Wrap around edges
-        if (particle.x < 0) particle.x = canvas.width;
-        if (particle.x > canvas.width) particle.x = 0;
-        if (particle.y < 0) particle.y = canvas.height;
-        if (particle.y > canvas.height) particle.y = 0;
-
-        // Draw particle
+        // Draw dot
+        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = p.color;
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color;
-        ctx.globalAlpha = particle.opacity;
+        ctx.arc(p.x, p.y, p.size, 0, 6.2832);
         ctx.fill();
 
-        // Draw connections
-        particles.slice(i + 1).forEach((other) => {
-          const dx2 = particle.x - other.x;
-          const dy2 = particle.y - other.y;
-          const dist = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-
-          if (dist < 120) {
+        // Only draw connections to next 5 neighbours (not all)
+        for (let j = i + 1; j < Math.min(i + 6, particles.length); j++) {
+          const q = particles[j];
+          const ddx = p.x - q.x;
+          const ddy = p.y - q.y;
+          const d2 = ddx * ddx + ddy * ddy;
+          if (d2 < 14400) {
+            // 120^2
+            ctx.globalAlpha = (1 - Math.sqrt(d2) / 120) * 0.12;
+            ctx.strokeStyle = p.color;
             ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = particle.color;
-            ctx.globalAlpha = (1 - dist / 120) * 0.15;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
             ctx.stroke();
           }
-        });
-      });
+        }
+      }
 
       ctx.globalAlpha = 1;
-      animationRef.current = requestAnimationFrame(animate);
+      animId = requestAnimationFrame(animate);
     };
 
-    animate();
+    animId = requestAnimationFrame(animate);
+    window.addEventListener("mousemove", handleMouse, { passive: true });
+    window.addEventListener("resize", resize, { passive: true });
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      cancelAnimationFrame(animId);
+      window.removeEventListener("mousemove", handleMouse);
+      window.removeEventListener("resize", resize);
     };
-  }, [dimensions]);
+  }, []);
 
   return (
     <canvas

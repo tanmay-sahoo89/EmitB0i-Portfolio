@@ -36,27 +36,6 @@ const achievements = [
 ];
 
 export default function Achievements() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.6, ease: "easeOut" as const },
-    },
-  };
-
   return (
     <section className="py-20 lg:py-32 bg-surface relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
@@ -76,41 +55,25 @@ export default function Achievements() {
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {achievements.map((achievement, idx) => (
-            <motion.div
+            <div
               key={idx}
-              variants={cardVariants}
-              whileHover={{
-                y: -10,
-                boxShadow:
-                  achievement.color === "primary"
-                    ? "0 20px 40px rgba(167, 139, 250, 0.15)"
-                    : "0 20px 40px rgba(52, 211, 153, 0.15)",
-              }}
-              className="bg-surface-container border border-outline-variant rounded-xl p-6 text-center group"
+              className={`bg-surface-container border border-outline-variant rounded-xl p-6 text-center group hover:-translate-y-2 transition-all duration-300 ${
+                achievement.color === "primary"
+                  ? "hover:shadow-[0_20px_40px_rgba(167,139,250,0.15)]"
+                  : "hover:shadow-[0_20px_40px_rgba(52,211,153,0.15)]"
+              }`}
             >
-              <motion.div
-                initial={{ scale: 1 }}
-                whileInView={{ scale: [1, 1.2, 1] }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="text-5xl mb-4"
-              >
-                {achievement.icon}
-              </motion.div>
+              <div className="text-5xl mb-4">{achievement.icon}</div>
 
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "3rem" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className={`h-0.5 mx-auto mb-4 ${
+              <div
+                className={`h-0.5 w-12 mx-auto mb-4 ${
                   achievement.color === "primary" ? "bg-primary" : "bg-tertiary"
                 }`}
               />
@@ -132,7 +95,7 @@ export default function Achievements() {
               <p className="text-on-surface-variant text-sm leading-relaxed">
                 {achievement.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>

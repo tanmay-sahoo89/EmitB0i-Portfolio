@@ -32,26 +32,6 @@ const arsenal = [
 ];
 
 export default function TechnicalArsenal() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" as const },
-    },
-  };
-
   return (
     <section className="py-20 lg:py-32 bg-surface-dim relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
@@ -71,30 +51,18 @@ export default function TechnicalArsenal() {
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
           {arsenal.map((item, idx) => (
-            <motion.div
+            <div
               key={idx}
-              variants={cardVariants}
-              whileHover={{
-                scale: 1.03,
-                boxShadow: "0 20px 40px rgba(167, 139, 250, 0.1)",
-              }}
-              className="bg-surface-container border border-outline-variant rounded-xl p-6 relative overflow-hidden group"
+              className="bg-surface-container border border-outline-variant rounded-xl p-6 relative overflow-hidden group hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(167,139,250,0.1)] transition-all duration-300"
             >
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-                className="absolute top-4 right-4 w-3 h-3 bg-tertiary rounded-full"
-              />
+              <div className="absolute top-4 right-4 w-3 h-3 bg-tertiary rounded-full animate-pulse" />
 
               <div className="text-4xl mb-4">{item.icon}</div>
 
@@ -112,23 +80,17 @@ export default function TechnicalArsenal() {
 
               <div className="flex flex-wrap gap-2">
                 {item.tools.map((tool, i) => (
-                  <motion.span
+                  <span
                     key={i}
-                    whileHover={{ scale: 1.1 }}
-                    className="px-2.5 py-1 bg-surface-container-high border border-outline-variant text-on-surface-variant rounded-md text-xs font-medium"
+                    className="px-2.5 py-1 bg-surface-container-high border border-outline-variant text-on-surface-variant rounded-md text-xs font-medium hover:scale-105 transition-transform duration-200"
                   >
                     {tool}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
 
-              <motion.div
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.6 }}
-                className="absolute bottom-0 left-0 h-0.5 w-full bg-gradient-to-r from-primary to-tertiary opacity-0 group-hover:opacity-100"
-              />
-            </motion.div>
+              <div className="absolute bottom-0 left-0 h-0.5 w-full bg-gradient-to-r from-primary to-tertiary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
           ))}
         </motion.div>
       </div>
