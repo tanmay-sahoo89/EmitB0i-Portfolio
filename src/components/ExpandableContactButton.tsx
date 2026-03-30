@@ -107,7 +107,7 @@ export default function ExpandableContactButton({
     if (isMobile) return;
     timeoutRef.current = setTimeout(() => {
       setIsExpanded(false);
-    }, 100);
+    }, 50);
   };
 
   const handleClick = () => {
@@ -145,7 +145,7 @@ export default function ExpandableContactButton({
           ${isExpanded ? "shadow-[0_0_25px_rgba(167,139,250,0.4)]" : ""}
         `}
         style={{
-          transition: "box-shadow 0.5s ease",
+          transition: "box-shadow 0.15s ease",
         }}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
@@ -155,11 +155,11 @@ export default function ExpandableContactButton({
         aria-label={isExpanded ? "Social links menu expanded" : "Get in Touch"}
       >
         {/* Container with fixed height to prevent layout shift */}
-        <div 
+        <div
           className="relative h-12 flex items-center overflow-hidden"
           style={{
             width: isExpanded ? "184px" : "140px",
-            transition: "width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            transition: "width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
           }}
         >
           {/* Text label - absolute positioned */}
@@ -168,7 +168,7 @@ export default function ExpandableContactButton({
             style={{
               opacity: isExpanded ? 0 : 1,
               transform: isExpanded ? "scale(0.8)" : "scale(1)",
-              transition: "opacity 0.4s ease, transform 0.4s ease",
+              transition: "opacity 0.15s ease, transform 0.15s ease",
               pointerEvents: isExpanded ? "none" : "auto",
             }}
           >
@@ -181,7 +181,7 @@ export default function ExpandableContactButton({
             style={{
               opacity: isExpanded ? 1 : 0,
               transform: isExpanded ? "scale(1)" : "scale(0.8)",
-              transition: "opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s",
+              transition: "opacity 0.15s ease, transform 0.15s ease",
               pointerEvents: isExpanded ? "auto" : "none",
             }}
           >
