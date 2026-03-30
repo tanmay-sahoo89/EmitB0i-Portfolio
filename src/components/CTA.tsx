@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import ExpandableContactButton from "./ExpandableContactButton";
 
 export default function CTA() {
   return (
@@ -25,7 +26,7 @@ export default function CTA() {
           </motion.span>
 
           <h2 className="text-4xl lg:text-6xl font-bold text-on-surface tracking-tighter mb-6">
-            Let's <span className="text-gradient">Get in Touch</span>?
+            Let's <span className="text-gradient">Get in Touch</span>!
           </h2>
 
           <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
@@ -34,30 +35,7 @@ export default function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <motion.a
-              href="mailto:sahootanmay2005@gmail.com"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 40px rgba(167, 139, 250, 0.5)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-primary text-on-primary font-semibold rounded-lg text-lg flex items-center gap-2"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              Get in Touch
-            </motion.a>
+            <ExpandableContactButton variant="primary" />
 
             <motion.a
               href="https://linkedin.com/in/tanmay-emitboi"

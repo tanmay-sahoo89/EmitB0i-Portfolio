@@ -13,3 +13,4 @@ export { default as InteractiveParticles } from "./InteractiveParticles";
 export { default as BackgroundLights } from "./BackgroundLights";
 export { default as InvertedCursor } from "./InvertedCursor";
 export { default as LoadingScreen } from "./LoadingScreen";
+export { default as ExpandableContactButton } from "./ExpandableContactButton";

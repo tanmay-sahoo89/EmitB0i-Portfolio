@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import InteractiveSpline from "./InteractiveSpline";
+import ExpandableContactButton from "./ExpandableContactButton";
 
 export default function Hero() {
   const containerVariants = {
@@ -129,7 +130,7 @@ export default function Hero() {
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-4 pt-2"
+              className="flex flex-wrap gap-4 pt-2 items-center"
             >
               <motion.a
                 href="#projects"
@@ -138,23 +139,12 @@ export default function Hero() {
                   boxShadow: "0 0 30px rgba(167, 139, 250, 0.5)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 lg:px-8 py-3 bg-primary text-on-primary font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+                className="px-6 lg:px-8 py-3 bg-primary text-on-primary font-semibold rounded-lg hover:bg-primary/90 transition-colors h-12 flex items-center"
               >
                 Explore My Work
               </motion.a>
 
-              <motion.a
-                href="#contact"
-                whileHover={{
-                  scale: 1.05,
-                  backgroundColor: "rgba(18, 18, 21, 1)",
-                  borderColor: "#a78bfa",
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 lg:px-8 py-3 border border-outline-variant text-on-surface font-semibold rounded-lg transition-colors"
-              >
-                Get in Touch
-              </motion.a>
+              <ExpandableContactButton variant="outline" />
             </motion.div>
 
             <motion.div
