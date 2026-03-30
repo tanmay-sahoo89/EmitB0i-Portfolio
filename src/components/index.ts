@@ -14,3 +14,9 @@ export { default as BackgroundLights } from "./BackgroundLights";
 export { default as InvertedCursor } from "./InvertedCursor";
 export { default as LoadingScreen } from "./LoadingScreen";
 export { default as ExpandableContactButton } from "./ExpandableContactButton";
+export { ScrollRevealWrapper, ScrollRevealItem } from "./ScrollRevealWrapper";
+export type {
+  ScrollRevealWrapperProps,
+  ScrollRevealItemProps,
+  RevealDirection,
+} from "./ScrollRevealWrapper";

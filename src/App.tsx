@@ -14,6 +14,7 @@ import {
   BackgroundLights,
   InvertedCursor,
   LoadingScreen,
+  ScrollRevealWrapper,
 } from "./components";
 
 function App() {
@@ -81,15 +82,46 @@ function App() {
           <div className="relative z-10">
             <Header />
             <main>
-              <Hero />
-              <About />
-              <TechnicalArsenal />
-              <Projects />
-              <Timeline />
-              <Achievements />
-              <CTA />
+              {/* Hero - once=true means stays visible after first reveal */}
+              <ScrollRevealWrapper direction="up" distance={40} once>
+                <Hero />
+              </ScrollRevealWrapper>
+
+              {/* About - Fades in/out with scroll */}
+              <ScrollRevealWrapper direction="up" distance={50}>
+                <About />
+              </ScrollRevealWrapper>
+
+              {/* Technical Arsenal - Slide from right */}
+              <ScrollRevealWrapper direction="right" distance={50}>
+                <TechnicalArsenal />
+              </ScrollRevealWrapper>
+
+              {/* Projects - Slide up */}
+              <ScrollRevealWrapper direction="up" distance={60}>
+                <Projects />
+              </ScrollRevealWrapper>
+
+              {/* Timeline - Slide from left */}
+              <ScrollRevealWrapper direction="left" distance={50}>
+                <Timeline />
+              </ScrollRevealWrapper>
+
+              {/* Achievements - Slide up */}
+              <ScrollRevealWrapper direction="up" distance={50}>
+                <Achievements />
+              </ScrollRevealWrapper>
+
+              {/* CTA - Slide up */}
+              <ScrollRevealWrapper direction="up" distance={40}>
+                <CTA />
+              </ScrollRevealWrapper>
             </main>
-            <Footer />
+
+            {/* Footer - Fade up */}
+            <ScrollRevealWrapper direction="up" distance={30}>
+              <Footer />
+            </ScrollRevealWrapper>
           </div>
         </div>
       )}
