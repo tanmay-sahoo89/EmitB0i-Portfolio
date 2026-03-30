@@ -25,7 +25,7 @@ export default function CTA() {
           </motion.span>
 
           <h2 className="text-4xl lg:text-6xl font-bold text-on-surface tracking-tighter mb-6">
-            Ready to <span className="text-gradient">Discover More</span>?
+            Let's <span className="text-gradient">Get in Touch</span>?
           </h2>
 
           <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
