@@ -1,4 +1,16 @@
-/* This file is intentionally empty - using Tailwind CSS */
+/* Marquee animation for text lanes */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation-name: marquee;
+}
   position: relative;
 
   .base,

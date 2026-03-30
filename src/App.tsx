@@ -15,6 +15,7 @@ import {
   InvertedCursor,
   LoadingScreen,
   ScrollRevealWrapper,
+  DualLaneDivider,
 } from "./components";
 
 function App() {
@@ -87,30 +88,48 @@ function App() {
                 <Hero />
               </ScrollRevealWrapper>
 
+              {/* Dual Lane Divider: ABOUT */}
+              <DualLaneDivider sectionName="ABOUT ME" />
+
               {/* About - Fades in/out with scroll */}
               <ScrollRevealWrapper direction="up" distance={50}>
                 <About />
               </ScrollRevealWrapper>
+
+              {/* Dual Lane Divider: SKILLS */}
+              <DualLaneDivider sectionName="TECHNICAL ARSENAL" />
 
               {/* Technical Arsenal - Slide from right */}
               <ScrollRevealWrapper direction="right" distance={50}>
                 <TechnicalArsenal />
               </ScrollRevealWrapper>
 
+              {/* Dual Lane Divider: PROJECTS */}
+              <DualLaneDivider sectionName="FEATURED PROJECTS" />
+
               {/* Projects - Slide up */}
               <ScrollRevealWrapper direction="up" distance={60}>
                 <Projects />
               </ScrollRevealWrapper>
+
+              {/* Dual Lane Divider: TIMELINE */}
+              <DualLaneDivider sectionName="CAREER TIMELINE" />
 
               {/* Timeline - Slide from left */}
               <ScrollRevealWrapper direction="left" distance={50}>
                 <Timeline />
               </ScrollRevealWrapper>
 
+              {/* Dual Lane Divider: ACHIEVEMENTS */}
+              <DualLaneDivider sectionName="ACHIEVEMENTS" />
+
               {/* Achievements - Slide up */}
               <ScrollRevealWrapper direction="up" distance={50}>
                 <Achievements />
               </ScrollRevealWrapper>
+
+              {/* Dual Lane Divider: CONTACT */}
+              <DualLaneDivider sectionName="LET'S CONNECT" />
 
               {/* CTA - Slide up */}
               <ScrollRevealWrapper direction="up" distance={40}>

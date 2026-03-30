@@ -20,3 +20,5 @@ export type {
   ScrollRevealItemProps,
   RevealDirection,
 } from "./ScrollRevealWrapper";
+export { DualLaneDivider, ScrollInteractiveTextLane } from "./ScrollInteractiveTextLane";
+export type { DualLaneDividerProps, ScrollInteractiveTextLaneProps } from "./ScrollInteractiveTextLane";
