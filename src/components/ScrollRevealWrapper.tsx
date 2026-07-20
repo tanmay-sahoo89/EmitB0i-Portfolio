@@ -1,5 +1,6 @@
 import { motion, useReducedMotion, useInView } from "framer-motion";
-import { ReactNode, memo, useRef, useMemo } from "react";
+import { memo, useRef, useMemo } from "react";
+import type { ReactNode } from "react";
 
 /**
  * Animation direction for scroll reveal
